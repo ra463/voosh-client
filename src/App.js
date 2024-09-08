@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
+import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import PulseLoader from "react-spinners/PulseLoader.js";
 
-function App() {
+const Home = lazy(() => import("./pages/Home.jsx"));
+const Login = lazy(() => import("./pages/Login.jsx"));
+const Register = lazy(() => import("./pages/Register.jsx"));
+const NotFound = lazy(() => import("./pages/NotFound.jsx"));
+
+const App = () => {
+  const { token } = useSelector((state) => state.auth);
+  let user = false;
+  if (token) user = true;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense
+        fallback={
+          <div className="load">
+            <PulseLoader size={15} color="#36d7b7" />
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute user={!user} redirect="/">
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRoute user={!user} redirect="/">
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      <Toaster />
+    </Router>
   );
-}
+};
 
 export default App;
