@@ -21,7 +21,7 @@ export const CardItem = ({ data, handleDragging }) => {
 
   const handleDelete = async (id) => {
     try {
-      if (!window.confirm("Are you sure you want to delete this comment?"))
+      if (!window.confirm("Are you sure you want to delete this task?"))
         return;
       setLoading(true);
 
