@@ -6,6 +6,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import toast from "react-hot-toast";
 import axiosInstance from "../utils/axiosUtils";
 import { setToken } from "../features/authSlice";
+import Header from "../components/Header/Header";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const Register = () => {
     <Navigate to="/" />
   ) : (
     <>
+      <Header />
       <div className="login-div">
         <form className="loginform" onSubmit={loginHandler}>
           <h2>Register</h2>

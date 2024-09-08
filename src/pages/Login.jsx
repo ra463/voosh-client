@@ -6,6 +6,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import toast from "react-hot-toast";
 import axiosInstance from "../utils/axiosUtils";
 import { setToken } from "../features/authSlice";
+import Header from "../components/Header/Header";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,11 +54,7 @@ const Login = () => {
     <Navigate to="/" />
   ) : (
     <>
-      <header>
-        <Link to="/">
-          <img src="/b-logo.svg" alt="logo" />
-        </Link>
-      </header>
+      <Header />
       <div className="login-div">
         <form className="loginform" onSubmit={loginHandler}>
           <h2>Login</h2>
