@@ -4,6 +4,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import PulseLoader from "react-spinners/PulseLoader.js";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
@@ -14,6 +15,26 @@ const App = () => {
   const { token } = useSelector((state) => state.auth);
   let user = false;
   if (token) user = true;
+
+  const GoogleAuthRegisterWrapper = () => {
+    return (
+      <GoogleOAuthProvider
+        clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+      >
+        <Register></Register>
+      </GoogleOAuthProvider>
+    );
+  };
+
+  const GoogleAuthLoginWrapper = () => {
+    return (
+      <GoogleOAuthProvider
+        clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+      >
+        <Login></Login>
+      </GoogleOAuthProvider>
+    );
+  };
 
   return (
     <Router>
@@ -32,7 +53,7 @@ const App = () => {
             path="/login"
             element={
               <ProtectedRoute user={!user} redirect="/">
-                <Login />
+                <GoogleAuthLoginWrapper />
               </ProtectedRoute>
             }
           />
@@ -40,7 +61,7 @@ const App = () => {
             path="/register"
             element={
               <ProtectedRoute user={!user} redirect="/">
-                <Register />
+                <GoogleAuthRegisterWrapper />
               </ProtectedRoute>
             }
           />

@@ -20,8 +20,6 @@ export const getAllTasks = async (
       }
     );
 
-    console.log(data);
-
     if (data.success) {
       setLoading(false);
       dispatch(setTasks({ tasks: data.tasks }));

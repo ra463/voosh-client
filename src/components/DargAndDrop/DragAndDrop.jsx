@@ -7,27 +7,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 const typesHero = ["todo", "inprogress", "done"];
 
-// const dataD = [
-//   {
-//     id: 1,
-//     title: "Title 1",
-//     description: "Description 1",
-//     status: "todo",
-//   },
-//   {
-//     id: 2,
-//     title: "Title 2",
-//     description: "Description 2",
-//     status: "inprogress",
-//   },
-//   {
-//     id: 3,
-//     title: "Title 3",
-//     description: "Description 3",
-//     status: "done",
-//   },
-// ];
-
 export const DragAndDrop = ({ search, sort }) => {
   const dispatch = useDispatch();
 
@@ -42,8 +21,6 @@ export const DragAndDrop = ({ search, sort }) => {
   useEffect(() => {
     getAllTasks(dispatch, setLoading, search, sort, token);
   }, [search, sort, token, dispatch]);
-
-  console.log(listItems);
 
   return (
     <div className="grid">
