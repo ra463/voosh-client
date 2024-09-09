@@ -168,7 +168,7 @@ const Register = () => {
           <button disabled={loading} type="submit">
             {loading ? <PulseLoader color="#fff" size={5} /> : "SIGNUP"}
           </button>
-          <button className="google" onClick={googleLogin}><FcGoogle /> Login with Google</button>
+          <button className="google" onClick={googleLogin}><FcGoogle /> Continue with Google</button>
         </form>
       </div>
     </>
