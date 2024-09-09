@@ -21,8 +21,7 @@ export const CardItem = ({ data, handleDragging }) => {
 
   const handleDelete = async (id) => {
     try {
-      if (!window.confirm("Are you sure you want to delete this task?"))
-        return;
+      if (!window.confirm("Are you sure you want to delete this task?")) return;
       setLoading(true);
 
       const { data } = await axiosInstance.delete(
@@ -51,7 +50,12 @@ export const CardItem = ({ data, handleDragging }) => {
     >
       <h3>Title: {data.title}</h3>
       <div className="details">
-        <p>Description: {data.description}</p>
+        <p>
+          Description:{" "}
+          {data.description.length > 50
+            ? data.description.slice(0, 50).concat("...")
+            : data.description}
+        </p>
         <span>Status: {data.status.toUpperCase()}</span>
         <span>Created At: {moment(data.createdAt).format("lll")}</span>
       </div>

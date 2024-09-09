@@ -16,7 +16,7 @@ const ViewTask = ({ setShowTask, Carddata }) => {
           <h3>Title: {Carddata.title}</h3>
           <div className="view">
             <p>
-              Description: {Carddata.description.slice(0, 50).concat("...")}
+              Description: {Carddata.description}
             </p>
             <p>Status: {Carddata.status.toUpperCase()}</p>
             <p>Created At: {moment(Carddata.createdAt).format("lll")}</p>
