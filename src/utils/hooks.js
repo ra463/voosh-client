@@ -24,6 +24,16 @@ export const useDragAndDrop = (initialState) => {
   const handleUpdateList = async (id, status) => {
     let card = listItems.find((item) => item.id === id);
 
+    if (card && card.status !== status) {
+      card.status = status;
+      if (Array.isArray(listItems)) {
+        setListItems((prev) => [
+          card,
+          ...prev.filter((item) => item.id !== id),
+        ]);
+      }
+    }
+
     try {
       const { data } = await axiosInstance.patch(
         `/api/task/update-task/${card._id}`,
@@ -45,16 +55,6 @@ export const useDragAndDrop = (initialState) => {
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
-    }
-
-    if (card && card.status !== status) {
-      card.status = status;
-      if (Array.isArray(listItems)) {
-        setListItems((prev) => [
-          card,
-          ...prev.filter((item) => item.id !== id),
-        ]);
-      }
     }
   };
 
