@@ -1,5 +1,7 @@
 ## Setup Instructions
 
+**Server is hoisted on RENDER, So it will take some time to respond**
+
 1. Clone the repository - `https://github.com/ra463/voosh-client.git`
 2. Install dependencies using `npm install`.
 3. Create the `.env` in the root of this directory.
