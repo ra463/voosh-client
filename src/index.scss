@@ -7,6 +7,14 @@
   box-sizing: border-box;
 }
 
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 html {
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -18,7 +26,7 @@ a {
 }
 
 body {
-  background: #e2e8f0;;
+  background: #e2e8f0;
 }
 
 ::-webkit-scrollbar {
@@ -96,7 +104,7 @@ body {
   flex-direction: column;
   gap: 0.5rem;
 
-  .details{
+  .details {
     border-top: 1px solid #ffffff8c;
     padding: 0.5rem 0;
     display: flex;
