@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Sans+Pro:wght@300;400&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background: #e2e8f0;;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 2px;
+  background: #888;
+}
+
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.layout-cards {
+  // border: 2px solid #ffffff8c;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.3s linear;
+  max-height: 67vh;
+  height: 67vh;
+  overflow-y: auto;
+}
+
+.layout-cards > p {
+  border-radius: 5px;
+  background-color: #3273f5;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.layout-dragging {
+  background: #ffffff17;
+  border: 2px dashed #ffffff8c;
+}
+
+.card-container {
+  margin-top: 1rem;
+  background-color: #d2e6fa;
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .details{
+    border-top: 1px solid #ffffff8c;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btns {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+
+    button {
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #ffffff8c;
+      color: white;
+      font-weight: bold;
+
+      &:nth-child(1) {
+        background-color: red;
+      }
+      &:nth-child(2) {
+        background-color: rgb(18, 93, 151);
+      }
+      &:nth-child(3) {
+        background-color: #3273f5;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .layout-cards {
+    overflow-y: scroll;
+    height: 250px;
+    min-height: 150px;
+    max-height: 250px;
+  }
+}

@@ -1,0 +1,99 @@
+.home {
+    padding: 10px;
+    position: relative;
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        button {
+            padding: 0.5rem;
+            width: 6rem;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            background: #3273f5;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+                background: #5d6878;
+            }
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 2px #696969;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 5px;
+            gap: 1rem;
+
+            div {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                input,
+                select {
+                    padding: 0.5rem;
+                    border: 1px solid #696969;
+                    outline: none;
+                    border-radius: 5px;
+
+                    &::placeholder {
+                        color: #696969;
+                    }
+                }
+            }
+        }
+    }
+
+    .drag {
+        margin-top: 10px;
+        display: flex;
+        gap: 1rem;
+
+        .task {
+            flex: 1;
+            background: #4a4a4b;
+            border-radius: 5px;
+            padding: 0.5rem;
+            box-shadow: 0 0 2px #696969;
+
+            .heading {
+                padding: 0.3rem 0.5rem;
+                border-radius: 3px;
+                color: #ebedf0;
+                background: #5a5a5a;
+            }
+
+            .lists {
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                margin-top: 10px;
+
+                .task {
+                    color: #ebedf0;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .home {
+        .head {
+            .filters {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    }
+}
