@@ -8,7 +8,7 @@
 5. Add the server url (local/deployed) `axiosUtils` file - `/utils/axiosUtils.jsx`.
 6. Start the server using `npm start`.
 
-### Server Deployed Link - [https://voosh-app.adaptable.app]
+### Server Deployed Link - [https://voosh-server-32um.onrender.com]
 
 ### Client Deployed Link - [https://voosh-client-rust.vercel.app]
 
