@@ -17,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const Login = () => {
   const responseGoogle = async (response) => {
     try {
       if (response["code"]) {
-        setLoading(true);
+        setGoogleLoading(true);
         const { data } = await axiosInstance.get(
           `/api/user/google-login?code=${response["code"]}`
         );
@@ -66,7 +67,7 @@ const Login = () => {
           localStorage.setItem("name", data.user.name);
           localStorage.setItem("id", data.user._id);
 
-          setLoading(false);
+          setGoogleLoading(false);
 
           dispatch(
             setToken({
@@ -126,7 +127,7 @@ const Login = () => {
           </Link>
 
           <button className="google" onClick={googleLogin}>
-            {loading ? (
+            {googleLoading ? (
               <PulseLoader color="#fff" size={5} />
             ) : (
               "Login with Google"
