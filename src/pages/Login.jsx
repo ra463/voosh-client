@@ -54,6 +54,7 @@ const Login = () => {
   const responseGoogle = async (response) => {
     try {
       if (response["code"]) {
+        setLoading(true);
         const { data } = await axiosInstance.get(
           `/api/user/google-login?code=${response["code"]}`
         );
@@ -64,6 +65,8 @@ const Login = () => {
           localStorage.setItem("avatar", data.user.avatar.url);
           localStorage.setItem("name", data.user.name);
           localStorage.setItem("id", data.user._id);
+
+          setLoading(false);
 
           dispatch(
             setToken({
@@ -123,7 +126,11 @@ const Login = () => {
           </Link>
 
           <button className="google" onClick={googleLogin}>
-            Login with Google
+            {loading ? (
+              <PulseLoader color="#fff" size={5} />
+            ) : (
+              "Login with Google"
+            )}
           </button>
         </form>
       </div>
