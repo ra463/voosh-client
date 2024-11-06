@@ -70,6 +70,7 @@ const Register = () => {
   const responseGoogle = async (response) => {
     try {
       if (response["code"]) {
+        setLoading(true);
         const { data } = await axiosInstance.get(
           `/api/user/google-login?code=${response["code"]}`
         );
@@ -80,6 +81,8 @@ const Register = () => {
           localStorage.setItem("avatar", data.user.avatar.url);
           localStorage.setItem("name", data.user.name);
           localStorage.setItem("id", data.user._id);
+
+          setLoading(false);
 
           dispatch(
             setToken({
@@ -163,7 +166,11 @@ const Register = () => {
           </Link>
 
           <button className="google" onClick={googleLogin}>
-            Continue with Google
+            {loading ? (
+              <PulseLoader color="#fff" size={5} />
+            ) : (
+              "Continue with Google"
+            )}
           </button>
         </form>
       </div>
