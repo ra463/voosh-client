@@ -20,6 +20,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -70,7 +71,7 @@ const Register = () => {
   const responseGoogle = async (response) => {
     try {
       if (response["code"]) {
-        setLoading(true);
+        setGoogleLoading(true);
         const { data } = await axiosInstance.get(
           `/api/user/google-login?code=${response["code"]}`
         );
@@ -82,7 +83,7 @@ const Register = () => {
           localStorage.setItem("name", data.user.name);
           localStorage.setItem("id", data.user._id);
 
-          setLoading(false);
+          setGoogleLoading(false);
 
           dispatch(
             setToken({
@@ -166,7 +167,7 @@ const Register = () => {
           </Link>
 
           <button className="google" onClick={googleLogin}>
-            {loading ? (
+            {googleLoading ? (
               <PulseLoader color="#fff" size={5} />
             ) : (
               "Continue with Google"
